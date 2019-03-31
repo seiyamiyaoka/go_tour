@@ -8,7 +8,7 @@ import (
 var i int
 
 func Swap(x int, y string) (string, int) {
-	fmt.Println("first return type is %s", x)
+	fmt.Println("first return type is %d", x)
 	return y, x
 }
 
@@ -46,4 +46,32 @@ func StackDefer() [3]string {
 		defer fmt.Println(users[i])
 	}
 	return names
+}
+
+func GetPointer() int {
+	i := 5
+	p := &i
+	return *p
+}
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func ArrayValue() [5]int {
+	var nums [5]int
+	for ; i < len(nums); i++ {
+		nums[i] = i
+	}
+	return nums
+}
+
+func CopyArray() []int {
+	var profile [3]int
+	profile[0] = 1
+	profile[1] = 5
+	profile[2] = 19
+	var s []int = profile[1:2]
+	return s
 }

@@ -55,10 +55,40 @@ func TestSwitchButton(t *testing.T) {
 	}
 }
 
-// func TestStackDefer(t *testing.T) {
-// 	result := L.StackDefer()
-// 	expect := [3]string{"tarou", "jiro", "saburo"}
-// 	if result != expect {
-// 		t.Errorf("L.StackDefer = %v; want to array ", result)
-// 	}
-// }
+func TestLibPointer(t *testing.T) {
+	result := L.GetPointer()
+	if result != 5 {
+		t.Errorf("L.getPointer = %d; want to int 5", result)
+	}
+}
+
+func TestLibUserStruct(t *testing.T) {
+	result := L.User{"tarou", 12}
+
+	if result.Name != "tarou" {
+		t.Errorf("User struct has attributes of name; target: %s", result.Name)
+	}
+	v := &result
+	v.Name = "neko"
+	if v.Name != "neko" {
+		t.Errorf("stuructのpointerが理解できていません")
+	}
+	(*v).Name = "kujira"
+	if (*v).Name != "kujira" {
+		t.Errorf("省略形の書き方がが理解できていません")
+	}
+}
+
+func TestArrayCode(t *testing.T) {
+	result := L.ArrayValue()
+	if len(result) != 5 {
+		t.Errorf("長さが違うよ; %d", len(result))
+	}
+}
+
+func TestCopyArrayForSlice(t *testing.T) {
+	result := L.CopyArray()
+	if result[0] != 5 {
+		t.Errorf("一番目はidである必要があります; %d", result[0])
+	}
+}
