@@ -92,3 +92,43 @@ func TestCopyArrayForSlice(t *testing.T) {
 		t.Errorf("一番目はidである必要があります; %d", result[0])
 	}
 }
+
+func TestGetSummaryOfData(t *testing.T) {
+	nums := []int{1, 2, 3}
+	result_i_1, result_i_2, result_ary := L.GetSummary(nums)
+	if result_i_1 != 3 && result_i_2 != 3 && result_ary[0] != 1 {
+		t.Errorf("要素数が正しくありません")
+	}
+}
+func TestSlicingAry(t *testing.T) {
+	nums := []int{1, 2, 3}
+	// slicingする slicingしたものをL.GetSummaryに入れる
+	result_i_1, result_i_2, result_ary := L.GetSummary(nums)
+	if result_i_1 != 3 && result_i_2 != 3 && result_ary[0] != 1 {
+		t.Errorf("要素数が正しくありません")
+	}
+}
+
+func TestGoMake(t *testing.T) {
+	result := L.GoMake()
+	fmt.Println(result)
+	if cap(result) != 5 {
+		t.Errorf("makeの使い方間違っているかも")
+	}
+}
+
+func TestCreateTicTocToeBoard(t *testing.T) {
+	result := L.CreateTicTocToeBoard()
+	if len(result) != 3 {
+		t.Errorf("それはtictactoeじゃないよ")
+	}
+}
+
+func TestRangePow(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	expect_num := []int{2, 4, 6, 8, 10, 12}
+	result := L.RangePow(nums)
+	if result[len(result)-1] != expect_num[len(result)-1] {
+		t.Errorf("返される要素数があっていませんよ; %v", result)
+	}
+}

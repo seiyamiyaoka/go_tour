@@ -137,6 +137,43 @@ importにaliasつき
 - スライスはどんなデータも格納していない, 元の配列の部分列を指し示している
 - 値ではなく参照なので参照先を変更すると元のデータにも変更を及ぼす
 
+### sliceのゼロ値は
+nilです。capとlenは0です
+
+### sliceのmake関数とは
+組み込み関数です。動的サイズの配列を作成することができます。
+
+```go
+a := make([]int, 5) => [0,0,0,0,0]
+b := make([]int, 0, 5) => [] => キャパシティは5あるよ
+```
+
+### 他のsliceをsliceに入れることができるとは
+多次元配列を作成することができる
+
+### sliceへ新しい要素を追加するには
+
+append関数が用意されている。
+https://golang.org/pkg/builtin/#append
+
+### range
+
+rangeも用意されていた。
+sliceやmapを反復処理して処理するために使う。range
+は反復するごとにindexとvalueを返す。
+
+
+```go
+func append(s []T, element ...T) []T// 第一引数がaryの元になる箱, elementが入れるもの, 戻り値は元に指定したTと合わせる必要がある
+
+```
+
+### 引数で指定したsliceの要素数が少ない場合は追加できないのか
+より大きいサイズの配列が割り当てられる
+
+### sliceの詳しい記述を教えてく
+https://blog.golang.org/go-slices-usage-and-internals
+
 ### 複数のtypeを含むデータを作るには
 structでやるのかも
 

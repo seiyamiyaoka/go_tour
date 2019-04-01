@@ -75,3 +75,37 @@ func CopyArray() []int {
 	var s []int = profile[1:2]
 	return s
 }
+
+func GetSummary(ary []int) (int, int, []int) {
+	nums := ary
+	return len(nums), cap(nums), nums
+}
+
+func GoMake() []int {
+	nums := make([]int, 0, 5)
+	return nums
+}
+
+func CreateTicTocToeBoard() [3][]string {
+	boards := [3][]string{}
+	for i := 0; i < 3; i++ {
+		boards[i] = createTicTocLine()
+	}
+	fmt.Println(boards)
+	return boards
+}
+
+func createTicTocLine() []string {
+	line := []string{
+		"_", "_", "_",
+	}
+	return line
+}
+
+func RangePow(nums []int) []int {
+	new_nums := nums
+	for i, v := range nums {
+		new_nums[i] = 2 * v
+	}
+	return new_nums
+}
