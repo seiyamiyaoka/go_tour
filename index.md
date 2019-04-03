@@ -162,6 +162,9 @@ rangeも用意されていた。
 sliceやmapを反復処理して処理するために使う。range
 は反復するごとにindexとvalueを返す。
 
+### rangeのインデックスとvalueを省略するには
+アンダースコアを使って省略します。
+
 
 ```go
 func append(s []T, element ...T) []T// 第一引数がaryの元になる箱, elementが入れるもの, 戻り値は元に指定したTと合わせる必要がある

@@ -109,3 +109,18 @@ func RangePow(nums []int) []int {
 	}
 	return new_nums
 }
+
+func RangeContinue(nums int) [][]uint8 {
+	// uint8はbyteと同じ2進数の8個なので 2 ** 8が最大(256まで)
+	binary := make([][]uint8, nums) // uint8のからの状態を作成
+	for i := range binary {
+		binary[i] = make([]uint8, nums) // 0arrayにする
+	}
+	for i, row := range binary {
+		for j := range row {
+			// 行数が全て0では面白くないので数字を作成
+			row[j] = uint8(i * j)
+		}
+	}
+	return binary
+}

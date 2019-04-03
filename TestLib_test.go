@@ -132,3 +132,12 @@ func TestRangePow(t *testing.T) {
 		t.Errorf("返される要素数があっていませんよ; %v", result)
 	}
 }
+
+func TestRangeContinue(t *testing.T) {
+	nums := 256
+	result := L.RangeContinue(nums)
+	fmt.Println(result)
+	if len(result) != 256 && len(result[0]) != 256 {
+		t.Errorf("rangeの省略がうまくできていません; return value is %v", result)
+	}
+}
