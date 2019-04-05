@@ -136,8 +136,34 @@ func TestRangePow(t *testing.T) {
 func TestRangeContinue(t *testing.T) {
 	nums := 256
 	result := L.RangeContinue(nums)
-	fmt.Println(result)
+	// fmt.Println(result)
 	if len(result) != 256 && len(result[0]) != 256 {
 		t.Errorf("rangeの省略がうまくできていません; return value is %v", result)
+	}
+}
+
+func TestMapVertex(t *testing.T) {
+	result := L.MapVertex()
+	// fmt.Println(result)
+	if result["address"].X != 40.68433 {
+		t.Errorf("住所が正しくありません")
+	}
+}
+
+func TestMapLiteral(t *testing.T) {
+	contries := []string{"jp", "en"}
+	result := L.MapLiteral(contries)
+	fmt.Println(result)
+	if len(result) != 2 {
+		t.Errorf("リテラルの要素数が正常ではありません")
+	}
+}
+
+func TestWordCounter(t *testing.T) {
+	word := "hi i am tarou"
+
+	result := L.WordCounter(word)
+	if result["hi"] != 1 {
+		t.Errorf("単語の数間違っているよ")
 	}
 }

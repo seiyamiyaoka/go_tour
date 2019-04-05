@@ -3,6 +3,7 @@ package lib
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 var i int
@@ -123,4 +124,60 @@ func RangeContinue(nums int) [][]uint8 {
 		}
 	}
 	return binary
+}
+
+type Vertex struct {
+	X float64
+}
+
+func MapVertex() map[string]Vertex {
+	m := make(map[string]Vertex)
+
+	m["address"] = Vertex{
+		40.68433,
+	}
+	return m
+}
+
+func MapLiteral(contries []string) map[string]Vertex {
+	m := make(map[string]Vertex)
+	for i, v := range contries {
+		m[v] = Vertex{
+			12.11111 * float64(i+1),
+		}
+	}
+	return m
+}
+
+func mapInt() map[string]int {
+	var m map[string]int
+	return m
+}
+
+func MapMutating() map[string]int {
+	m := mapInt()
+	m["consumer"] = 1
+	return m
+}
+
+type Consumer struct {
+	money int
+}
+
+func MapHasKey(data map[string]Consumer, key string) bool {
+	_, ok := data[key]
+	return ok
+}
+
+func WordCounter(words string) map[string]int {
+	counter := make(map[string]int)
+	for _, word := range strings.Fields(words) {
+		_, ok := counter[word]
+		if ok == true {
+			counter[word] += 1
+		} else {
+			counter[word] = 1
+		}
+	}
+	return counter
 }
