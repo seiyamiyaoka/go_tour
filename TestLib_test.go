@@ -174,3 +174,26 @@ func TestLibCompute(t *testing.T) {
 		t.Errorf("関数に関数を渡した結果が間違っているよ")
 	}
 }
+
+func TestCloujureSum(t *testing.T) {
+	var result int
+	add := L.CloujureSum()
+	for i := 0; i < 5; i++ {
+		result = add(i)
+	}
+
+	if result != 10 {
+		t.Errorf("クロージャを使って関数が正しく定義できていません")
+	}
+}
+
+func TestFibNat(t *testing.T) {
+	var result int
+	fib := L.FibNat()
+	for i := 0; i < 10; i++ {
+		result = fib()
+	}
+	if result != 34 {
+		t.Errorf("フィボナッチ数列の計算があっていないよ; got: %d", result)
+	}
+}

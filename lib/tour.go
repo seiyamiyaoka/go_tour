@@ -185,3 +185,31 @@ func WordCounter(words string) map[string]int {
 func Compute(fn func(x, y float64) float64) float64 {
 	return fn(3, 4) // 関数は可変で数値が固定
 }
+
+func CloujureSum() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		fmt.Println(sum)
+		return sum
+	}
+}
+
+func FibNat() func() int {
+	first := 0
+	second := 1
+	index := -1
+	result := 0
+	return func() int {
+		index += 1
+		if index == 0 {
+			return 0
+		} else if index == 1 {
+			return 1
+		}
+		result = first + second
+		first = second
+		second = result
+		return result
+	}
+}
