@@ -213,3 +213,21 @@ func FibNat() func() int {
 		return result
 	}
 }
+
+func (u User) GetName() string {
+	return u.Name
+}
+
+func (u *User) UpdateName(name string) {
+	u.Name = name
+}
+
+type MiyaokaNum int
+
+func (m MiyaokaNum) AddTen() int {
+	return int(m) + 10
+}
+
+func UpdateAge(u *User, age int) {
+	u.Age = age
+}

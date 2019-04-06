@@ -197,3 +197,36 @@ func TestFibNat(t *testing.T) {
 		t.Errorf("フィボナッチ数列の計算があっていないよ; got: %d", result)
 	}
 }
+
+func TestUserName(t *testing.T) {
+	tarou := L.User{"tarou", 34}
+	if tarou.GetName() != "tarou" {
+		t.Errorf("メソッドのレシーバが正しくセットできていません")
+	}
+}
+
+func TestNumReceiver(t *testing.T) {
+	miya_num := L.MiyaokaNum(10)
+	if miya_num.AddTen() != 20 {
+		t.Errorf("レシーバが間違っているかも; got: %d", miya_num)
+	}
+}
+
+func TestUpdateName(t *testing.T) {
+	tarou := L.User{"tarou", 12}
+	tarou.UpdateName("tarou_second")
+	if tarou.GetName() != "tarou_second" {
+		t.Errorf("ポインタレシーバの使い方が間違っているかも; got: %v", tarou.GetName())
+	}
+}
+
+func TestUpdateAge(t *testing.T) {
+	// tarou := &L.User("tarou", 10)
+	// L.UpdateAge(tarou, 20)
+	// これでも可能
+	tarou := L.User{"tarou", 19}
+	L.UpdateAge(&tarou, 20)
+	if tarou.Age != 20 {
+		t.Errorf("ポインタの使い方間違ってるかも; got: %v", tarou.Age)
+	}
+}
