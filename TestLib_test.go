@@ -167,3 +167,10 @@ func TestWordCounter(t *testing.T) {
 		t.Errorf("単語の数間違っているよ")
 	}
 }
+
+func TestLibCompute(t *testing.T) {
+	result := L.Compute(math.Pow)
+	if result != 81 {
+		t.Errorf("関数に関数を渡した結果が間違っているよ")
+	}
+}

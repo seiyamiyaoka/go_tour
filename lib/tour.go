@@ -181,3 +181,7 @@ func WordCounter(words string) map[string]int {
 	}
 	return counter
 }
+
+func Compute(fn func(x, y float64) float64) float64 {
+	return fn(3, 4) // 関数は可変で数値が固定
+}
