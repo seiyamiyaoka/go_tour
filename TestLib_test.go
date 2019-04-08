@@ -230,3 +230,19 @@ func TestUpdateAge(t *testing.T) {
 		t.Errorf("ポインタの使い方間違ってるかも; got: %v", tarou.Age)
 	}
 }
+
+func TestUserInterface(t *testing.T) {
+	var miyaoka_interface L.UserInterface
+
+	new_nums := L.MiyaokaNum(10)
+
+	miyaoka_interface = new_nums
+
+	if miyaoka_interface.AddTen() != 20 {
+		t.Errorf("正しくインターフェースがセットできていません;")
+	}
+
+	if miyaoka_interface.AddNum(15) != 25 {
+		t.Errorf("正しくインターフェースに引数が渡せてないかも; %d", miyaoka_interface.AddNum(15))
+	}
+}

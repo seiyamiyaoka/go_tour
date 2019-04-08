@@ -228,6 +228,15 @@ func (m MiyaokaNum) AddTen() int {
 	return int(m) + 10
 }
 
+func (m MiyaokaNum) AddNum(num int) int {
+	return int(m) + num
+}
+
 func UpdateAge(u *User, age int) {
 	u.Age = age
+}
+
+type UserInterface interface {
+	AddTen() int
+	AddNum(num int) int
 }
