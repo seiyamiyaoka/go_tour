@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"testing"
 
 	L "./lib"
@@ -244,5 +245,84 @@ func TestUserInterface(t *testing.T) {
 
 	if miyaoka_interface.AddNum(15) != 25 {
 		t.Errorf("正しくインターフェースに引数が渡せてないかも; %d", miyaoka_interface.AddNum(15))
+	}
+}
+
+func TestUserAndBlogInterface(t *testing.T) {
+	var name L.NameInterface
+
+	user := L.User{"tarou", 12}
+	name = user
+
+	if name.GetName() != "tarou" {
+		t.Errorf("インターフェースを複数個所から呼び出すことができていません")
+	}
+	blog := L.Blog{"tarousblog", "tarou san"}
+	name = blog
+
+	if name.GetName() != "tarou san" {
+		t.Errorf("インターフェースの使い方違うよ")
+	}
+}
+
+func TestUserNullPointer(t *testing.T) {
+	var i L.BlogInterface
+
+	var b *L.Blog
+
+	i = b
+
+	if i.GetAuthor() != "nil" {
+		t.Errorf("nilの処理がうまくできていません")
+	}
+
+	b = &L.Blog{"tarou", "saburou"}
+	i = b
+	if i.GetAuthor() != "tarou" {
+		t.Errorf("nilの処理がうまくできていません")
+	}
+}
+
+func TestEmptyInterface(t *testing.T) {
+	var i interface{}
+
+	i = 10
+
+	if i != 10 {
+		t.Errorf("からのインターフェースが正しく実装されていません")
+	}
+
+	i = "tarou"
+
+	s, ok := i.(string)
+	if s != "tarou" && ok {
+		t.Errorf("からのインターフェースが正しく実装されていません")
+	}
+}
+
+func TestStringer(t *testing.T) {
+	result := L.IpStringer()
+	expect := L.IPAddr{127, 0, 0, 1}
+	if result["loopback"] != expect {
+		t.Errorf("正しくstringerが作成できていません")
+	}
+}
+
+func TestAtoiError(t *testing.T) {
+	i, err := strconv.Atoi("42")
+	if err != nil {
+		fmt.Printf("couldn't convert number : %v", err)
+		return
+	}
+	if i != 42 {
+		t.Errorf("数字の変換が間違っています; got: %v", i)
+	}
+}
+
+func TestErrorFunc(t *testing.T) {
+	_, err := L.WordLength()
+
+	if err != nil {
+		t.Errorf("何も設定していない長さの文字はエラーです")
 	}
 }

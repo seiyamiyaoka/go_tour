@@ -240,3 +240,59 @@ type UserInterface interface {
 	AddTen() int
 	AddNum(num int) int
 }
+
+type Blog struct {
+	Author string
+	Name   string
+}
+
+func (b Blog) GetName() string {
+	return b.Name
+}
+
+type NameInterface interface {
+	GetName() string
+}
+
+type BlogInterface interface {
+	GetAuthor() string
+}
+
+func (b *Blog) GetAuthor() string {
+	if b == nil {
+		return "nil"
+	}
+	return b.Author
+}
+
+type IPAddr [4]byte
+
+func (i IPAddr) String() string {
+	var address string
+	for _, num := range i {
+		address += fmt.Sprintf("%v.", num)
+	}
+	return address[0 : len(address)-1]
+}
+
+func IpStringer() map[string]IPAddr {
+	address := map[string]IPAddr{
+		"loopback": {127, 0, 0, 1},
+	}
+	return address
+}
+
+type ErrorWord string
+
+func (e ErrorWord) Error() string {
+	return fmt.Sprint("それはエラーです, 処理を止めます")
+}
+
+func WordLength() (string, error) {
+	// wordの中身を消したり入れたりしてテストします
+	word := "1"
+	if len(word) < 1 {
+		return word, ErrorWord(word)
+	}
+	return word, nil
+}
